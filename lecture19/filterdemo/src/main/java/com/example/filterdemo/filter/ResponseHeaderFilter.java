@@ -13,22 +13,19 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-//@Component 
-public class AuthenticationFilter implements Filter {
-     @Override
+// @Component 
+public class ResponseHeaderFilter implements Filter {
+
+    @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        HttpServletRequest httpServletRequest = (HttpServletRequest) request;        
+        
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-        String token = httpServletRequest.getHeader("token");
-        if (token == null || !token.equals("12345")) {
-            httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            httpServletResponse.setContentType("application/json");
-            httpServletResponse.getWriter().write("{\r\n" + //
-                                "    \"message\":\"Authentication Required\"\r\n" + //
-                                "}");
-            return;
-        }
+        String requestId=UUID.randomUUID().toString();
+        httpServletResponse.setHeader("x-request-id", requestId);
         chain.doFilter(request, response);
+
     }
+    
+    
 }
