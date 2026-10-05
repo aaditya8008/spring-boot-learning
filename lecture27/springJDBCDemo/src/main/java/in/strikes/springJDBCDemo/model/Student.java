@@ -1,4 +1,4 @@
-package org.example.hibernatedemo.model;
+package in.strikes.springJDBCDemo.model;
 
 public class Student {
     private Long id;
