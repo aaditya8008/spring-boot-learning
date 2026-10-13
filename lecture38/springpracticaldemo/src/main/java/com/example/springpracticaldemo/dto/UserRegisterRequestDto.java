@@ -1,4 +1,4 @@
-package in.strikes.springPracticalDemo.dto;
+package com.example.springpracticaldemo.dto;
 
 import lombok.Getter;
 import lombok.Setter;
